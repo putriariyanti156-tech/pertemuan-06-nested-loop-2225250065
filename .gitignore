@@ -1,0 +1,121 @@
+Berikut adalah template lengkap untuk file `README.md` dan `.gitignore` sesuai dengan instruksi modul praktikum Pertemuan 06:
+
+### 1. `README.md`
+
+Simpan file ini dengan nama `README.md` di direktori utama (root) repository Anda.
+
+```markdown
+# Pertemuan 06 - Nested Loop Python
+
+Nama: [Nama Anda]
+NIM: [NIM Anda]
+Kelas: [Kelas Anda]
+
+## Tujuan
+Menggunakan nested loop, pola, akumulasi, dan pencacahan untuk menyelesaikan permasalahan komputasi berbasis matriks dan iterasi berganda.
+
+## Cara Menjalankan
+Jalankan program Tugas 3 melalui terminal dengan perintah berikut:
+```bash
+python3 tugas/tabel_perkalian_dan_statistik.py
+
+```
+
+## Algoritma Tugas 3
+
+* **Loop Luar (`i`):** Mengontrol perpindahan baris pada tabel perkalian dari $1$ sampai $n$.
+* **Loop Dalam (`j`):** Mengontrol perpindahan kolom pada setiap baris dari $1$ sampai $n$.
+* **Akumulator (`total_baris` & `total_semua`):** Menyimpan penjumlahan nilai secara kumulatif. `total_baris` menghitung jumlah nilai pada baris tertentu, sedangkan `total_semua` mengakumulasi seluruh nilai dari awal hingga akhir.
+* **Counter (`count_genap`):** Menghitung jumlah hasil perkalian yang bernilai genap (`hasil % 2 == 0`).
+
+## Hasil Pengujian (Tugas 3)
+
+| Input ($n$) | Jumlah Pasangan | Total Semua | Banyak Hasil Genap | Status |
+| --- | --- | --- | --- | --- |
+| 1 | 1 | 1 | 0 | Lulus |
+| 2 | 4 | 9 | 3 | Lulus |
+| 3 | 9 | 36 | 5 | Lulus |
+
+## Analisis Efisiensi
+
+Badan loop dalam dan pernyataan `hasil = i * j` dieksekusi sebanyak **$n^2$** kali. Ketika nilai $n$ membesar (misal $n = 100$), jumlah iterasi dan operasi perkalian akan meningkat secara kuadratik ($10.000$ kali eksekusi), sehingga operasi di dalam loop dalam akan menjadi bagian yang paling banyak memakan sumber daya komputasi.
+
+## Refleksi
+
+* **Kesalahan Nested Loop yang Sering Ditemukan:** Meletakkan inisialisasi `total_baris = 0` di luar loop luar (sebelum loop `i` dimulai). Hal ini menyebabkan nilai jumlah baris sebelumnya ikut terjumlahkan ke baris berikutnya. Cara memperbaikinya adalah menempatkan inisialisasi `total_baris = 0` tepat di dalam loop luar sebelum loop `j` dimulai.
+* **Mengapa `total_baris` direset di setiap iterasi loop luar?** Agar akumulasi penjumlahan hanya menghitung nilai pada baris aktif saat itu saja.
+* **Mengapa `total_semua` tidak direset di setiap baris?** Karena tujuannya adalah mengakumulasi seluruh hasil dari keseluruhan baris.
+* **Bagaimana membuktikan `count_genap` benar?** Dengan memastikan pencacahan hanya bertambah (`+= 1`) ketika kondisi modulus bernilai nol (`hasil % 2 == 0`) serta diuji dengan kasus manual kecil seperti $n = 2$.
+
+```
+
+---
+
+### 2. `.gitignore`
+Simpan file ini dengan nama `.gitignore` di direktori utama (root) repository Anda agar file-file sampah sistem atau cache Python tidak ikut ter-commit ke Git.
+
+```text
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.bin
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+```
